@@ -18,7 +18,7 @@ RUN which pdftoppm && pdftoppm -v || true
 COPY package*.json ./
 
 # Install all dependencies (omit optional ones if not needed)
-RUN npm install --omit=optional
+RUN npm install 
 
 # Copy rest of the app files
 COPY . .
