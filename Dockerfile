@@ -14,8 +14,9 @@ RUN apt-get update && \
 # Optional: Confirm pdftoppm location
 RUN which pdftoppm && pdftoppm -v || true
 
-# Copy only package files first to install dependencies (improves caching)
-COPY package*.json ./
+# Copy package.json, package-lock.json (if exists), and patches folder BEFORE npm install
+COPY package*.json ./ 
+COPY patches ./patches
 
 # Install all dependencies (omit optional ones if not needed)
 RUN npm install 
