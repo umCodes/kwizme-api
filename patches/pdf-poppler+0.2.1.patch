@@ -1,8 +1,8 @@
 diff --git a/node_modules/pdf-poppler/index.js b/node_modules/pdf-poppler/index.js
-index a4a48b3..7cddb1c 100644
+index a4a48b3..f20efa1 100644
 --- a/node_modules/pdf-poppler/index.js
 +++ b/node_modules/pdf-poppler/index.js
-@@ -2,8 +2,11 @@ const os = require('os');
+@@ -2,8 +2,14 @@ const os = require('os');
  const path = require('path');
  const {spawn} = require('child_process');
  
@@ -10,12 +10,15 @@ index a4a48b3..7cddb1c 100644
 +
  let platform = os.platform();
 -if (!['darwin', 'win32'].includes(platform)) {
++console.log(platform);
++
 +
 +if (!['darwin', 'win32', 'linux'].includes(platform)) {
++    console.log("platform: ", platform);
      console.error(`${platform} is NOT supported.`);
      process.exit(1);
  }
-@@ -28,7 +31,9 @@ if (platform === 'win32') {
+@@ -28,7 +34,9 @@ if (platform === 'win32') {
      // for electron ASAR
      popplerPath = popplerPath.replace(".asar", ".asar.unpacked");
  }
