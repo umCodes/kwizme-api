@@ -17,7 +17,10 @@ app.use(express.json());
 
 app.use('/auth', validateInput, authRouter);
 app.use(refreshtokens, verifyTokens);
+
 app.use('/api', quizRoutes);
+
+
 
 app.use(errorHandler);
 

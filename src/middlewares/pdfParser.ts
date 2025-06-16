@@ -13,6 +13,10 @@ export async function pdfParser(req: Request, res: Response, next: NextFunction)
     if(!req.file || req.body.file_type !== 'text') return next();
     req.body.generated_from = 'text pdf';
 
+    console.log(req.body);
+    console.log(req.file);
+    
+    
     //Read File's Content
     const filePath = req.file.path;
     const file = fs.readFileSync(filePath);
