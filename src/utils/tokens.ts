@@ -52,8 +52,8 @@ export function storeInCookies(res: Response, tokens: Tokens){
     if(tokens?.accessToken)//store access token in cookie
     res.cookie("access-token", tokens.accessToken, {
         httpOnly: true,
-        // secure: true,
-        // sameSite: 'lax'
+        secure: true,
+        sameSite: 'None'
     });
         
     
@@ -61,8 +61,8 @@ export function storeInCookies(res: Response, tokens: Tokens){
     res.cookie("refresh-token", tokens.refreshToken, {
         maxAge: 1000 * 60 * 60 * 24 * 99,
         httpOnly: true,
-        // secure: true,
-        // sameSite: 'lax'
+        secure: true,
+        sameSite: 'None'
     });
     return;
 
