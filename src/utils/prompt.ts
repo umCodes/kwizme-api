@@ -13,12 +13,15 @@ export async function generateQuiz(prompt: QuizPrompt): Promise<Quizes | undefin
         number,
     } = prompt;
 
+    console.log(prompt);
+    
+
     //Checks if uid exists
     if(!uid) 
         throw new HttpError("Invalid User Id.", 400);
 
     //Checks if subject is not a bunch of messy words
-    if(subject.match(/(^\s*$)|(^(\S)\3+$)|(^[\W_]+$)/)) 
+    if(subject && subject.match(/(^\s*$)|(^(\S)\3+$)|(^[\W_]+$)/)) 
         throw new HttpError("Invalid prompt", 400);
 
     //Checks if number of questions doesn't exceed limits 
@@ -112,7 +115,7 @@ function createQuizPrompt({ uid, subject, qTypes, difficulty, number, credits, g
                 };
 
                 type TF = {
-                    type: "True/False";
+                    type: "T/F";
                     question: string;
                     options: [{ answer: boolean; correct: boolean }, { answer: boolean; correct: boolean }];
                 };
@@ -146,3 +149,7 @@ function createQuizPrompt({ uid, subject, qTypes, difficulty, number, credits, g
             
             `;
 }
+
+
+
+

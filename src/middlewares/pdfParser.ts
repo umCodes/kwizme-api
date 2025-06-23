@@ -10,13 +10,10 @@ import Tesseract from "tesseract.js";
 
 export async function pdfParser(req: Request, res: Response, next: NextFunction) {
     
-    console.log(req.file);
+    console.log(req.body, req.file);
     
     if(!req.file || req.body.file_type !== 'text') return next();
     req.body.generated_from = 'text pdf';
-
-    console.log(req.body);
-    console.log(req.file);
     
     
     //Read File's Content

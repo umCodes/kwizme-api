@@ -12,7 +12,7 @@ import { User } from "../models/User";
 
 
 export async function getQuizes(req: Request, res: Response, next: NextFunction) {
-
+    
     //Pagination 
     const page = Number(req.query.page || 0) ;
     const limit = 10;
@@ -27,6 +27,8 @@ export async function getQuizes(req: Request, res: Response, next: NextFunction)
             throw new HttpError('Collection not found', 404);
 
         const quizes = await quizesCollection.find({uid}).limit(limit).skip(skip).toArray();       
+        
+        console.log(quizes);
         
         res.json(quizes)
         return;    
@@ -81,7 +83,9 @@ export async function deleteQuiz(req: Request, res: Response, next: NextFunction
         await quizesCollection.deleteOne({uid, _id: new ObjectId(quizId)})
 
 
-        res.status(204)    
+        res.status(204).json({
+            message: 'delete successful'
+        })    
         return;
         
     } catch (error) {

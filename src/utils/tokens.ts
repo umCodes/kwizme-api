@@ -56,6 +56,7 @@ export function storeInCookies(res: Response, tokens: Tokens){
         // sameSite: 'lax'
     });
         
+    
     if(tokens?.refreshToken)//store refresh token in cookie
     res.cookie("refresh-token", tokens.refreshToken, {
         maxAge: 1000 * 60 * 60 * 24 * 99,

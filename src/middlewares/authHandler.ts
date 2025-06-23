@@ -75,10 +75,12 @@ export async function verifyTokens(req: Request, res: Response, next: NextFuncti
 
     //Verify token
     jwt.verify(token, signature.accessToken, async (err, decoded) =>{
-        console.log(err);        
+        console.log(err, "no error");
         if(err) return next(new HttpError('Access Forbidden', 400));
         
         req.user = {uid: (decoded as UserPayload).uid};
+        console.log(req.user);
+        
         next();
         return;
     })

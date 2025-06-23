@@ -84,6 +84,7 @@ export async function login(req: Request, res: Response, next: NextFunction){
             if(!tokens) throw new Error('Error generating tokens'); 
             storeInCookies(res, tokens);
                 
+            console.log("Login Successfull!");
             
             //Responed with:
             res.status(200).json({

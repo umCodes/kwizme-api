@@ -7,18 +7,26 @@ import { connectToDB } from './db/dbConfig';
 import { authRouter } from './routes/authRoutes';
 import { refreshtokens, validateInput, verifyTokens } from './middlewares/authHandler';
 import { quizRoutes } from './routes/quizRoutes';
+import { userRoutes } from './routes/userRoutes';
 
 
 const app = express();
 
+
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+
 app.use(cookieParser());
 app.use(express.json());
 
-app.use('/auth', validateInput, authRouter);
+
+app.use('/auth', authRouter);
 app.use(refreshtokens, verifyTokens);
 
+
 app.use('/api', quizRoutes);
+app.use('/', userRoutes);
+
+
 
 
 
@@ -30,3 +38,4 @@ export const database = (async () =>{
         app.listen(PORT, () => console.log(`Server runnig on port ${PORT}`));    
     return db;
 })();
+
